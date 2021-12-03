@@ -14,7 +14,7 @@
 
 **Deseable**
 
-- Validaciones tanto por Front End como por Backend.
+- Validaciones.
 - Implementar el Backend en CQRS con Mediatr.
 - Se valoran el uso de librerías como Automapper, Dependency Inyection o las que vea conveniente para un código limpio y escalable.
 - Test Unitarios.
