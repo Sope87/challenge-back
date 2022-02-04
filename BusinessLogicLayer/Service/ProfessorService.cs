@@ -67,7 +67,7 @@ namespace BusinessLogicLayer.Service
                 await _repositoryProfessor.Update(entityToUpdate);
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return false;
               

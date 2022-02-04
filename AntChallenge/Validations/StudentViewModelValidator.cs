@@ -1,16 +1,14 @@
-﻿using DataAccessLayer.Models;
+﻿using AntChallenge.ViewModels;
 using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AntChallenge.Validations
 {
-    public class StudentValidator : AbstractValidator<Student>
+    public class StudentViewModelValidator : AbstractValidator<StudentViewModel>
     {
-        public StudentValidator()
+        public StudentViewModelValidator()
         {
+            RuleFor(c => c.Id)
+                .Must(x => x >= 0);
             RuleFor(c => c.Name)
                 .NotEmpty().WithMessage("Name is required")
                 .NotNull()

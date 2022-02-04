@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AntChallenge.ViewModels;
+using AutoMapper;
 using BusinessLogicLayer.Service;
 using BusinessLogicLayer.Service.Interfaces;
 using DataAccessLayer.Models;
@@ -19,25 +21,26 @@ namespace AntChallenge.Controllers
     {
         
         private IGenericService<Professor> _professorService;
-        //private ProfessorRepository _professorRepository;
-        public ProfessorsController(IGenericService<Professor> professorService)
+        private readonly IMapper _mapper;
+
+        public ProfessorsController(IGenericService<Professor> professorService, IMapper mapper)
         {
             _professorService = professorService;
-            //_professorRepository = professorRepository;
+            _mapper = mapper;
         }
 
         // GET: api/Professors
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Professor>>> GetProfessors()
+        public async Task<ActionResult<IEnumerable<ProfessorViewModel>>> GetProfessors()
         {
             var response =  await _professorService.GetListAsync();
             
-            return Ok(response);       
+            return Ok(_mapper.Map<IReadOnlyList<ProfessorViewModel>>(response));       
         }
 
         // GET: api/Professors/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Professor>> GetProfessor(int id)
+        public async Task<ActionResult<ProfessorViewModel>> GetProfessor(int id)
         {
             var response = await _professorService.GetByIdAsync(id); 
 
@@ -46,12 +49,12 @@ namespace AntChallenge.Controllers
                 return NotFound();
             }
 
-            return Ok(response);
+            return Ok(_mapper.Map <ProfessorViewModel> (response));
         }
 
         // GET: api/Professors/GetProfessorDetails/{id}
         [HttpGet("GetProfessorDetails/{id}")]
-        public async Task<ActionResult<Professor>> GetProfessorDetails(int id)
+        public async Task<ActionResult<ProfessorViewModel>> GetProfessorDetails(int id)
         {
             var professor = await _professorService.GetByIdFullAsync(id);
 
@@ -60,44 +63,59 @@ namespace AntChallenge.Controllers
                 return NotFound();
             }
 
-            return Ok(professor);
+            return Ok(_mapper.Map<ProfessorViewModel>(professor));
         }
 
         // PUT: api/Professors/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutProfessor(int id, Professor professor)
+        public async Task<IActionResult> PutProfessor(int id, ProfessorViewModel professorVM)
         {
             try
             {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
                 var getProfessor = await  _professorService.GetByIdAsync(id);
                 if (getProfessor == null)
                 {
                     return NotFound();
                 }
-                //TODO no se si recuperarlo antes
-                var response = await _professorService.UpdateAsync(professor);
-                return Ok(response);
+                var professor = _mapper.Map<Professor>(professorVM);
+
+                getProfessor.IsActive = professor.IsActive;
+                getProfessor.Name = professor.Name;
+                getProfessor.LastName = professor.LastName;
+                getProfessor.Students = professor.Students;
+                var response = await _professorService.UpdateAsync(getProfessor);
+                return Ok();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                return BadRequest(ex.Message);
             }
 
         }
 
         // POST: api/Professors
         [HttpPost]
-        public async Task<ActionResult<Professor>> PostProfessor(Professor professor)
+        public async Task<ActionResult<ProfessorViewModel>> PostProfessor(ProfessorViewModel professorVM)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var professor = _mapper.Map<Professor>(professorVM);
+
             var classToCreate = await _professorService.CreateAsync(professor);
 
-            return CreatedAtAction("GetProfessor", new { id = classToCreate.Id }, classToCreate);
+            return CreatedAtAction("GetProfessor", new { id = classToCreate.Id }, _mapper.Map<ProfessorViewModel>(classToCreate));
         }
 
         // DELETE: api/Professors/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Professor>> DeleteProfessor(int id)
+        public async Task<ActionResult<ProfessorViewModel>> DeleteProfessor(int id)
         {
             var professor = await _professorService.GetByIdAsync(id);
             if (professor == null)

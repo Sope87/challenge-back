@@ -1,0 +1,5 @@
+TODOS:
+Add Unit of Work in DataAccessLayer
+ADD DTO In BusinessLogicLayer
+ADD MediatR CQRS
+ADD Test

@@ -20,6 +20,7 @@ using BusinessLogicLayer.Service.Interfaces;
 using BusinessLogicLayer.Service;
 using FluentValidation.AspNetCore;
 using AntChallenge.Validations;
+using System.Reflection;
 
 namespace AntChallenge
 {
@@ -41,7 +42,8 @@ namespace AntChallenge
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "AntChallenge", Version = "v1" });
             });
-
+            //services.AddAutoMapper(typeof(Startup));
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddDbContext<SystemAntorcha_DBContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("AntorchaDB")));
 
@@ -56,9 +58,10 @@ namespace AntChallenge
             services.AddTransient<IGenericService<Student>, StudentService>();
 
             services.AddControllers()
-            .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ProfessorValidator>());
+            .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ProfessorViewModelValidator>());
             services.AddControllers()
-            .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<StudentValidator>());
+            .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<StudentViewModelValidator>());
+
 
         }
 

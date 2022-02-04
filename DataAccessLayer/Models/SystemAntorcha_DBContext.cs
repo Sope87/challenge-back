@@ -69,6 +69,7 @@ namespace DataAccessLayer.Models
                 entity.HasOne(d => d.Professor)
                     .WithMany(p => p.Students)
                     .HasForeignKey(d => d.ProfessorId)
+                    .OnDelete(DeleteBehavior.SetNull)
                     .HasConstraintName("FK_Student_Professor");
             });
 
