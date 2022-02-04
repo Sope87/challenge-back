@@ -1,0 +1,296 @@
+{
+	"info": {
+		"_postman_id": "7691d1dc-4fd3-4196-bb66-6bdbe5ff7f4f",
+		"name": "ChallengeAntorcha",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "PostProfessor",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Antorcha\",\r\n    \"lastName\": \"Digital\",\r\n    \"isActive\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44394/api/Professors/",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44394",
+					"path": [
+						"api",
+						"Professors",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetProfessors",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44394/api/Professors",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44394",
+					"path": [
+						"api",
+						"Professors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetOneProfessor",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44394/api/Professors/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44394",
+					"path": [
+						"api",
+						"Professors",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PutProfessor",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"Antorcha\",\r\n    \"lastName\": \"Digital2\",\r\n    \"isActive\": 1,\r\n    \"student\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44394/api/Professors/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44394",
+					"path": [
+						"api",
+						"Professors",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ProfessorDetails",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44394/api/Professors/GetProfessorDetails/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44394",
+					"path": [
+						"api",
+						"Professors",
+						"GetProfessorDetails",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteProfessor",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44394/api/Professors/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44394",
+					"path": [
+						"api",
+						"Professors",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PostStudent",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 0,\r\n    \"name\": \"Student2\",\r\n    \"lastName\": \"STD1\",\r\n    \"isActive\": 1,\r\n    \"professorId\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44394/api/Students",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44394",
+					"path": [
+						"api",
+						"Students"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetStudents",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44394/api/Students",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44394",
+					"path": [
+						"api",
+						"Students"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetOneStudent",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44394/api/Students/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44394",
+					"path": [
+						"api",
+						"Students",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PutStudent",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 1,\r\n  \"name\": \"StudentFirst\",\r\n  \"lastName\": \"First\",\r\n  \"isActive\": 1,\r\n  \"professorId\": 1  \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44394/api/Students/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44394",
+					"path": [
+						"api",
+						"Students",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetStudentDetails",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44394/api/Students/GetStudentDetails/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44394",
+					"path": [
+						"api",
+						"Students",
+						"GetStudentDetails",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteStudent",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44394/api/Students/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44394",
+					"path": [
+						"api",
+						"Students",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
